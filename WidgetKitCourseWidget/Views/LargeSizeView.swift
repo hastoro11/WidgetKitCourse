@@ -24,19 +24,19 @@ struct LargeSizeView: View {
             .clipped()
             .shadow(radius: 5)
             
-            ForEach(0..<6, id:\.self) { id in
-                Link(destination: URL(string: "myapp://todo/\(id)")!) {
+            ForEach(entry.todos) { todo in
+                Link(destination: URL(string: "myapp://todo/\(todo.id)")!) {
                     HStack {
                         Circle()
                             .stroke(lineWidth: 2)
                             .frame(width: 30, height: 30)
                             .overlay {
-                                if true {
+                                if todo.completed {
                                     Image(systemName: "checkmark")
                                 }
                         }
                         
-                        Text("todo title")
+                        Text(todo.title)
                         
                         Spacer()
                         
@@ -58,7 +58,7 @@ struct LargeSizeView: View {
 
 struct Previews_LargeSizeView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeSizeView(entry: SimpleEntry(date: Date.distantFuture))
+        LargeSizeView(entry: SimpleEntry(date: Date.distantFuture, todos: [Todo.placeholder(0), .placeholder(1)]))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

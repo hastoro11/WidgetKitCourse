@@ -23,7 +23,7 @@ struct WidgetKitCourseWidget: Widget {
 
 struct WidgetKitCourseWidget_Previews: PreviewProvider {
     static var previews: some View {
-        WidgetView(entry: SimpleEntry(date: Date()))
+        WidgetView(entry: SimpleEntry(date: Date(), todos: [Todo.placeholder(0), .placeholder(1)]))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
