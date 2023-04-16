@@ -18,6 +18,18 @@ struct WidgetView: View {
             MediumSizeView(entry: entry)
         case .systemLarge:
             LargeSizeView(entry: entry)
+        case .accessoryInline:
+            Text(entry.todos.first?.title ?? "No todos")
+        case .accessoryCircular:
+            Gauge(value: 0.7) {
+                Text(entry.date, format: .dateTime.year())
+            }
+            .gaugeStyle(.accessoryCircular)
+        case .accessoryRectangular:
+            Gauge(value: 0.7) {
+                Text(entry.date, format: .dateTime.year())
+            }
+            .gaugeStyle(.accessoryLinear)
         default:
             Text("Not implemented!")
         }
